@@ -1,0 +1,26 @@
+[package]
+name = "blackout"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+description = "A local-first engine for preparing, validating, packaging and restoring offline software development environments."
+license = "GPL-3.0-only"
+repository = "https://github.com/root465-lipcripto/blackout"
+keywords = ["offline", "airgap", "build", "reproducible-builds"]
+categories = ["command-line-utilities", "development-tools"]
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+tar = "0.4"
+walkdir = "2"
+zstd = "0.13"
+tempfile = "3"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
