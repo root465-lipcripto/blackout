@@ -18,6 +18,7 @@ BLACKOUT is a local-first Linux CLI for inspecting projects, caching verified fi
 - Store a file in a local SHA-256 content-addressed cache and verify it later.
 - Create and verify `tar.zst` source bundles; restore verified files into a new directory with path, file-type, duplicate, size, and checksum checks.
 - Generate Markdown or JSON reports from project discovery and the last observed validation results.
+- Check the locked dependency graph for advisories, licenses, duplicate packages, and unapproved sources with `cargo-deny` in CI.
 - Omit common secret files and generated directories from prepared copies and bundles.
 
 The bundle contains the prepared source and Cargo vendor tree when the input is prepared. It does not contain a compiler/container image, system libraries, or a guarantee that the target machine has a compatible toolchain.

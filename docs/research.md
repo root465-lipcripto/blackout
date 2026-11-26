@@ -14,6 +14,7 @@ Research checked on 2026-11-26. This is a design comparison, not a security audi
 | [OCI Image Layout](https://github.com/opencontainers/image-spec/blob/main/image-layout.md) | OCI layouts use content-addressed blobs and location-addressed references and can be transported in archives. | The object cache follows the content-addressing idea. `.blackout` is tar+Zstandard and is **not** an OCI image or OCI layout. |
 | [Nix reproducible builds](https://reproducible.nixos.org/) | Nix derivations provide declared dependencies and sandboxing as a basis for reproducible builds; that alone does not eliminate all nondeterminism. | BLACKOUT will not label a successful offline build as reproducible. |
 | [Bazel external dependencies](https://bazel.build/external/overview) | Bazel has explicit external dependency/repository mechanisms; repository rules are part of dependency acquisition. | A future adapter must distinguish prefetch from execution with network disabled. |
+| [cargo-deny](https://embarkstudios.github.io/cargo-deny/checks/index.html) | Checks dependency advisories, licenses, duplicate crates, and source locations. | CI runs its advisory, license, and source checks from the committed lockfile and allowlist. |
 
 ## Similar-name check
 
