@@ -10,4 +10,5 @@
 - The cache does not yet record origin, compatibility, or project references; there is no garbage-collection command.
 - Bundle filtering is heuristic; review content before sharing.
 - Checksums are not signatures. There is no signature/attestation mechanism.
-- No performance benchmarks, ARM64 CI, binary release, or reproducibility proof is claimed.
+- The only prebuilt binary is Linux x86_64 GNU/Linux and requires glibc 2.34 or newer. There is no ARM64 binary, Windows/macOS target, or reproducibility proof.
+- No performance benchmarks or signed release attestations are provided.

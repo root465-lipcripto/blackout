@@ -38,17 +38,32 @@ The committed fixture and workflow exercise this path; the printed image digest 
 
 ## Install
 
-Prerequisites for Linux:
+### Download the Linux x86_64 binary
 
-- Rust stable and Cargo (1.85 or newer).
-- Podman for the network isolation check and isolated Cargo validation.
-- A locally available container image for the selected task. The default validation image is `rust:1.85-slim`; BLACKOUT never pulls an image automatically.
+The [v0.1.0 release](https://github.com/root465-lipcripto/blackout/releases/tag/v0.1.0) includes a prebuilt Linux x86_64 GNU/Linux archive. It requires glibc 2.34 or newer. Verify the checksum file from the same release before installing:
 
-Build from a checkout:
+```sh
+curl -LO https://github.com/root465-lipcripto/blackout/releases/download/v0.1.0/blackout-x86_64-unknown-linux-gnu.tar.gz
+curl -LO https://github.com/root465-lipcripto/blackout/releases/download/v0.1.0/SHA256SUMS.txt
+grep 'blackout-x86_64-unknown-linux-gnu.tar.gz' SHA256SUMS.txt | sha256sum --check
+tar -xzf blackout-x86_64-unknown-linux-gnu.tar.gz
+install -Dm755 blackout-x86_64-unknown-linux-gnu/blackout "$HOME/.local/bin/blackout"
+blackout --version
+```
+
+The archive contains the executable, this README, and the GPL-3.0-only license. The release does not currently include ARM64 or other operating-system binaries.
+
+### Build from source
+
+Building from a checkout requires Rust and Cargo 1.85 or newer:
 
 ```sh
 cargo install --path . --locked
 ```
+
+### Offline validation requirements
+
+Podman is required for the network isolation check and isolated Cargo validation. A locally available container image is also required for the selected task. The default validation image is `rust:1.85-slim`; BLACKOUT never pulls an image automatically.
 
 `blackout doctor` reports whether Podman is available and configured rootless. The network probe uses `registry.fedoraproject.org/fedora:latest` by default; set `BLACKOUT_PROBE_IMAGE` to another already-present image with a compatible libc when needed. Build/test validation uses `BLACKOUT_SANDBOX_IMAGE` and defaults to `rust:1.85-slim`. CI pins both container images by digest.
 
@@ -146,7 +161,7 @@ The name BLACKOUT is used by unrelated public projects. This repository makes no
 - **0.3:** add Go and Node.js only after dependency closure and offline execution are tested; add portable machine-readable reports.
 - **Later:** multi-architecture validation, signed attestations, storage references/GC, and package formats.
 
-No ARM64 support or release artifact is claimed in this initial development snapshot.
+The v0.1.0 release provides one Linux x86_64 GNU/Linux binary. It does not claim ARM64 support, reproducible binaries, or other operating-system artifacts.
 
 ## Contributing
 
